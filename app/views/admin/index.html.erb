@@ -1,0 +1,34 @@
+<h1>Queue Admin</h1>
+
+<h2><%= link_to 'Notify next in line', admin_index_path, method: :post %></h2>
+
+(Clicking this link sends them an email and tells them to come wait in line)
+
+<h2>Notified</h2>
+
+<%= "None" if @notified_users.blank? %>
+
+
+<% @notified_users.each do |user| %>
+  <section>
+    <strong><%= user.name %></strong>
+    <%= button_to "Finished with #{ user.name }", admin_path(id: user.id), method: :delete,  form: {style: 'display:inline-block;'} %>
+  </section>
+  <hr />
+<% end %>
+
+
+<h2>Waiting</h2>
+
+<%= "None" if @waiting_users.blank? %>
+
+<% @waiting_users.each do |user| %>
+  <section>
+    <strong><%= user.name %></strong>
+  </section>
+  <hr />
+<% end %>
+
+<%= will_paginate @waiting_users %>
+
+

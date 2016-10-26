@@ -1,0 +1,29 @@
+<h1>Get in the Queue!</h1>
+
+<%= form_for(@queued_user) do |f| %>
+  <% if @queued_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@queued_user.errors.count, "error") %> prohibited this @queued_user from being saved:</h2>
+
+      <ul>
+      <% @queued_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Name (What you want to be called)" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number, "Phone Number (This is how you get notified)" %>
+    <%= f.text_field :number %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'submit' %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<h1>Queued Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>confirmed</th>
+      <th>Confirm token</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @queued_users.each do |queued_user| %>
+      <tr>
+        <td><%= queued_user.name %></td>
+        <td><%= queued_user.number %></td>
+        <td><%= queued_user.confirmed %></td>
+        <td><%= queued_user.confirm_token %></td>
+        <td><%= link_to 'Show', queued_user %></td>
+        <td><%= link_to 'Edit', edit_queued_user_path(queued_user) %></td>
+        <td><%= link_to 'Destroy', queued_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Queued User', new_queued_user_path %>

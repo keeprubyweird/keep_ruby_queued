@@ -1,0 +1,1 @@
+json.partial! "queued_users/queued_user", queued_user: @queued_user

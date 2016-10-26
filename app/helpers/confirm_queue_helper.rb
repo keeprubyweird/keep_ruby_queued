@@ -1,0 +1,2 @@
+module ConfirmQueueHelper
+end

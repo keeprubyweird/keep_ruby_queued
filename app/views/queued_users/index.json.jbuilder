@@ -1,0 +1,1 @@
+json.array! @queued_users, partial: 'queued_users/queued_user', as: :queued_user
