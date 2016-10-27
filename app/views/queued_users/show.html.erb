@@ -1,11 +1,9 @@
 <p>
-  <% if @queued_user.confirmed %>
-    <h3>Place in line: <%= @queued_user.place_in_line %></h3>
-    <p>Phone number confirmed</p>
-
-  <% else %>
-    <h3>Pending phone number confirmation, check your text messages</h3>
-  <% end %>
+  <h3>
+    <%= "You're finished"                                             if @queued_user.finished_at         %>
+    <%= "Place in line #{ @queued_user.place_in_line}"                if @queued_user.waiting?            %>
+    <%= "Pending phone number confirmation, check your text messages" if @queued_user.confirmed_at.blank? %>
+  </h3>
 </p>
 
 <p>
@@ -17,8 +15,6 @@
   <strong>Phone Number:</strong>
   <%= @queued_user.number %>
 </p>
-
-
 
 <%= button_to "Re-send confirmation text", resend_text_path(id: @queued_user.id, confirm_token: @queued_user.confirm_token) %>
 

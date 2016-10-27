@@ -3,6 +3,10 @@ class QueuedUser < ApplicationRecord
   validates :name, :number, presence: true
   before_save :strip_number
 
+  def waiting?
+    finished_at.blank? && confirmed_at.present?
+  end
+
   def valid_token?(token)
     token == self.confirm_token
   end
