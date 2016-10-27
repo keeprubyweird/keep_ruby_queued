@@ -1,5 +1,9 @@
 <h1>Get in the Queue!</h1>
 
+<p>
+  Enter your name and phone number, we'll confirm it, and then send you a text when it's your turn in line.
+</p>
+
 <%= form_for(@queued_user) do |f| %>
   <% if @queued_user.errors.any? %>
     <div id="error_explanation">
