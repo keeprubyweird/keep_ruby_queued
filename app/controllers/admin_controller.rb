@@ -17,11 +17,12 @@ class AdminController < ApplicationController
   def destroy
     user = QueuedUser.find(queued_user_params[:id])
     user.finished_at = Time.now
+    user.save!
     redirect_back(fallback_location: '/admin')
   end
 
   private
     def queued_user_params
-      params.require(:id)
+      params.permit(:id)
     end
 end
