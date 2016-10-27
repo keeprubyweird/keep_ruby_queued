@@ -1,7 +1,7 @@
 <h2>Queue Admin</h2>
 
 <div>
-  <h2><%= button_to 'Notify next in line', admin_index_path, method: :post %></h2>
+  <h2><%= button_to 'Notify Next in line', admin_index_path, method: :post %></h2>
   <p>
     (Clicking this link sends the next person a text and tells them to come wait in line)
   </p>
@@ -10,7 +10,7 @@
 <h3>Notified</h3>
 
 <% if @notified_users.blank? %>
-  <p>(None)</p>
+  <p>(None, click the "Notify" button above)</p>
 <% end %>
 
 <% @notified_users.each.with_index do |user| %>
@@ -39,15 +39,8 @@
 
 <% @waiting_users.each do |user| %>
   <div class="row">
-    <div class="one-half  column">
+    <div class="column">
       <p><strong><%= user.name %></strong></p>
-    </div>
-    <div class="one-half column">
-      <%= button_to "Finished with #{ user.name }",
-            admin_path(id: user.id),
-            method: :delete,
-            form: {style: 'display:inline-block;'} %>
-
     </div>
   </div>
   <hr />
