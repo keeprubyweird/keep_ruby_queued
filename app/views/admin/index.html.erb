@@ -1,31 +1,55 @@
-<h1>Queue Admin</h1>
+<h2>Queue Admin</h2>
 
-<h2><%= link_to 'Notify next in line', admin_index_path, method: :post %></h2>
+<div>
+  <h2><%= button_to 'Notify next in line', admin_index_path, method: :post %></h2>
+  <p>
+    (Clicking this link sends the next person a text and tells them to come wait in line)
+  </p>
+</div>
 
-(Clicking this link sends them an email and tells them to come wait in line)
+<h3>Notified</h3>
 
-<h2>Notified</h2>
+<% if @notified_users.blank? %>
+  <p>(None)</p>
+<% end %>
 
-<%= "None" if @notified_users.blank? %>
+<% @notified_users.each.with_index do |user| %>
+  <div class="row">
+    <div class="one-half column">
+      <p><strong><%= user.name %></strong></p>
+    </div>
+    <div class="one-half column">
+      <%= button_to "Finished with #{ user.name }",
+            admin_path(id: user.id),
+            method: :delete,
+            form: {style: 'display:inline-block;'} %>
 
-
-<% @notified_users.each do |user| %>
-  <section>
-    <strong><%= user.name %></strong>
-    <%= button_to "Finished with #{ user.name }", admin_path(id: user.id), method: :delete,  form: {style: 'display:inline-block;'} %>
-  </section>
+    </div>
+  </div>
   <hr />
 <% end %>
 
 
-<h2>Waiting</h2>
+<h3>Waiting</h3>
 
-<%= "None" if @waiting_users.blank? %>
+
+<% if @waiting_users.blank? %>
+  <p>(None)</p>
+<% end %>
 
 <% @waiting_users.each do |user| %>
-  <section>
-    <strong><%= user.name %></strong>
-  </section>
+  <div class="row">
+    <div class="one-half  column">
+      <p><strong><%= user.name %></strong></p>
+    </div>
+    <div class="one-half column">
+      <%= button_to "Finished with #{ user.name }",
+            admin_path(id: user.id),
+            method: :delete,
+            form: {style: 'display:inline-block;'} %>
+
+    </div>
+  </div>
   <hr />
 <% end %>
 
