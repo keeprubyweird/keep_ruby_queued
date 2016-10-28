@@ -2,7 +2,7 @@
   <h3>
     <%= "You're finished"                                             if @queued_user.finished_at         %>
     <%= "Place in line #{ @queued_user.place_in_line}"                if @queued_user.waiting?            %>
-    <%= "Pending phone number confirmation, check your text messages" if @queued_user.confirmed_at.blank? %>
+    <%= "Pending phone number confirmation, check your text messages" if @queued_user.queued_at.blank? %>
   </h3>
 </p>
 

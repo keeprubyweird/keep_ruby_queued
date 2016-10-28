@@ -4,7 +4,7 @@ class QueuedUser < ApplicationRecord
   before_save :strip_number
 
   def waiting?
-    finished_at.blank? && confirmed_at.present?
+    finished_at.blank? && queued_at.present?
   end
 
   def valid_token?(token)
